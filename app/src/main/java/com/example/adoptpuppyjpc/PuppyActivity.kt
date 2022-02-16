@@ -5,15 +5,14 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.compose.setContent
-import androidx.compose.material.Text
 import com.example.adoptpuppyjpc.ui.theme.PuppyTheme
+import data.Puppy
 
 class PuppyActivity : AppCompatActivity() {
 
     private val puppy: Puppy by lazy {
         intent.getSerializableExtra(PUPPY_ID) as Puppy
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

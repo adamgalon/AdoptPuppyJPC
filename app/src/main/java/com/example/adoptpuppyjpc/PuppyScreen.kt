@@ -17,7 +17,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.max
+import data.FakePuppyData
+import data.Puppy
 
 
 @Composable
@@ -99,15 +100,12 @@ fun PuppyProperty(
 }
 
 
-
-
-
-
-
-
-
-
-
+@Preview()
+@Composable
+fun PreviewPuppyScreen() {
+    val puppy = FakePuppyData.puppy
+    PuppyScreen(puppy = puppy)
+}
 
 
 

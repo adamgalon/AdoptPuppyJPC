@@ -1,6 +1,5 @@
 package data
 
-import com.example.adoptpuppyjpc.Puppy
 import com.example.adoptpuppyjpc.R
 
 

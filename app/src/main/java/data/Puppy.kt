@@ -1,4 +1,4 @@
-package com.example.adoptpuppyjpc
+package data
 
 import java.io.Serializable
 
