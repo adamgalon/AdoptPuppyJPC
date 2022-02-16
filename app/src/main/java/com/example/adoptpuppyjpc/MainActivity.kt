@@ -4,17 +4,19 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.adoptpuppyjpc.ui.theme.PuppyTheme
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             PuppyTheme {
-                MyApp({})
+                MyApp{
+                    startActivity(PuppyActivity.newIntent(this,it))
+                }
             }
         }
     }
@@ -34,6 +36,6 @@ fun MyApp(navigateToPuppy: (Puppy) -> Unit) {
 @Composable
 fun DefaultPreview() {
     PuppyTheme {
-        MyApp({})
+        MyApp {}
     }
 }
