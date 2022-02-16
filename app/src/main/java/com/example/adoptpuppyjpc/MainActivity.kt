@@ -14,16 +14,18 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             PuppyTheme {
-                MyApp()
+                MyApp({})
             }
         }
     }
 }
 
 @Composable
-fun MyApp() {
+fun MyApp(navigateToPuppy: (Puppy) -> Unit) {
     Scaffold(
-        content = { PuppyHomeContent() }
+        content = {
+            PuppyHomeContent(navigateToPuppy = navigateToPuppy)
+        }
     )
 }
 
@@ -32,6 +34,6 @@ fun MyApp() {
 @Composable
 fun DefaultPreview() {
     PuppyTheme {
-        MyApp()
+        MyApp({})
     }
 }

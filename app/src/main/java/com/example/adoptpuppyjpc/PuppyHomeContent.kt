@@ -1,6 +1,7 @@
 package com.example.adoptpuppyjpc
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -22,14 +23,19 @@ import androidx.compose.ui.unit.dp
 import data.FakePuppyData
 
 @Composable
-fun PuppyHomeContent() {
+fun PuppyHomeContent(
+    navigateToPuppy: (Puppy) -> Unit
+) {
     val puppies = remember { FakePuppyData.puppyList }
 
     LazyColumn(contentPadding = PaddingValues(16.dp, 8.dp)) {
         items(
             items = puppies,
             itemContent = {
-                PuppyListItem(puppy = it)
+                PuppyListItem(
+                    puppy = it,
+                    navigateToPuppy = navigateToPuppy
+                )
             }
         )
     }
@@ -39,23 +45,24 @@ fun PuppyHomeContent() {
 
 
 @Composable
-fun PuppyListItem(puppy: Puppy) {
+fun PuppyListItem(
+    puppy: Puppy,
+    navigateToPuppy: (Puppy) -> Unit
+) {
     Card(
         modifier = Modifier
             .padding(horizontal = 8.dp, 8.dp)
             .fillMaxWidth(),
         elevation = 2.dp,
-        backgroundColor = Color.White,
         shape = RoundedCornerShape(corner = CornerSize(16.dp))
     ) {
-        Row {
+        Row(Modifier.clickable { navigateToPuppy(puppy) }) {
             PuppyImage(puppy = puppy)
             Column(
                 modifier = Modifier
                     .padding(16.dp)
                     .align(Alignment.CenterVertically)
             ) {
-
                 Text(text = puppy.title, style = typography.h6)
                 Text(text = "View Details", style = typography.caption)
             }
@@ -75,8 +82,6 @@ fun PuppyImage(puppy: Puppy) {
             .size(80.dp)
             .clip(RoundedCornerShape(corner = CornerSize(16.dp)))
     )
-
-
 }
 
 
