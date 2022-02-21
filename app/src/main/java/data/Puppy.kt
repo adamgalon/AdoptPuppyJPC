@@ -1,4 +1,4 @@
-package com.example.adoptpuppyjpc
+package data
 
 data class Puppy(
     val id: Int,

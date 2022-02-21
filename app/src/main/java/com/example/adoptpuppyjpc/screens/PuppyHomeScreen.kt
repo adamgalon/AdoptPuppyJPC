@@ -1,5 +1,6 @@
-package com.example.adoptpuppyjpc
+package com.example.adoptpuppyjpc.screens
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -15,34 +16,36 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.focus.focusModifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import com.example.adoptpuppyjpc.Screen
 import data.FakePuppyData
+import data.Puppy
 
 @Composable
-fun PuppyHomeContent(
-    navigateToPuppy: (Puppy) -> Unit
+fun PuppyHomeScreen(
+    navController: NavHostController
+//    navigateToPuppy: (Puppy) -> Unit
 ) {
     val puppies = remember { FakePuppyData.puppyList }
 
     LazyColumn(contentPadding = PaddingValues(16.dp, 8.dp)) {
         items(
             items = puppies,
-            itemContent = {
+            itemContent = { puppy ->
                 PuppyListItem(
-                    puppy = it,
-                    navigateToPuppy = navigateToPuppy
+                    puppy = puppy,
+                    navigateToPuppy = {
+                        Log.e("arg", puppy.id.toString())
+                        navController.navigate(route = Screen.PuppyDetailScreen.passId(puppy.id-1))
+                    }
                 )
             }
         )
     }
-
-
 }
-
 
 @Composable
 fun PuppyListItem(
@@ -84,19 +87,9 @@ fun PuppyImage(puppy: Puppy) {
     )
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*
+@Preview
+@Composable
+fun PreviewPuppyHomeContent() {
+    PuppyHomeScreen({})
+}*/
